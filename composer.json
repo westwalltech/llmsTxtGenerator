@@ -1,41 +1,41 @@
 {
-    "name": "ravenna/llmsgenerator",
-    "type": "statamic-addon",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Ravenna\\LlmsGenerator\\": "src"
-        }
+  "name": "ravenna/llmsgenerator",
+  "type": "statamic-addon",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Ravenna\\LlmsGenerator\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ravenna\\LlmsGenerator\\Tests\\": "tests"
+    }
+  },
+  "require": {
+    "php": ">=8.2",
+    "statamic/cms": "^5.0|^6.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^9.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "pixelfear/composer-dist-plugin": true
+    }
+  },
+  "extra": {
+    "statamic": {
+      "name": "Llms Generator",
+      "description": "LLMS.txt generator for Statamic 5+",
+      "namespace": "Ravenna\\LlmsGenerator"
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Ravenna\\LlmsGenerator\\Tests\\": "tests"
-        }
-    },
-    "require": {
-        "php": ">=8.2",
-        "statamic/cms": "^5.0"
-    },
-    "require-dev": {
-        "orchestra/testbench": "^9.0"
-    },
-    "config": {
-        "allow-plugins": {
-            "pixelfear/composer-dist-plugin": true
-        }
-    },
-    "extra": {
-      "statamic": {
-        "name": "Llms Generator",
-        "description": "LLMS.txt generator for Statamic 5+",
-        "namespace": "Ravenna\\LlmsGenerator"
-      },
-      "laravel": {
-        "providers": [
-          "Ravenna\\LlmsGenerator\\ServiceProvider"
-        ]
-      }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "laravel": {
+      "providers": [
+        "Ravenna\\LlmsGenerator\\ServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
