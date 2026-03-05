@@ -1,5 +1,5 @@
 {
-  "name": "ravenna/llmsgenerator",
+  "name": "ravenna/llms-generator",
   "type": "statamic-addon",
   "license": "MIT",
   "autoload": {
