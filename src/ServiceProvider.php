@@ -2,52 +2,37 @@
 
 namespace Ravenna\LlmsGenerator;
 
-use Error;
-use routes;
-use Statamic\Statamic;
-use Statamic\Events\Booted;
-use Statamic\Facades\Entry;
 use Statamic\Facades\CP\Nav;
-use Illuminate\Support\Facades\Event;
-use Statamic\Providers\AddonServiceProvider;
+use Statamic\Facades\Entry;
 use Statamic\Events\EntrySaved;
 use Statamic\Events\EntryDeleted;
+use Illuminate\Support\Facades\Event;
+use Statamic\Providers\AddonServiceProvider;
 use Ravenna\LlmsGenerator\Services\LlmsTxtService;
 
 class ServiceProvider extends AddonServiceProvider
 {
+    protected $routes = [
+        'cp' => __DIR__ . '/../routes/cp.php',
+    ];
 
-  /**
-  * Init
-  */
-  public function bootAddon()
-  {
-      parent::boot();
+    public function bootAddon(): void
+    {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'llms-generator');
 
-      $this->loadRoutesFrom(__DIR__ . '/../routes/cp.php');
-      $this->loadViewsFrom(__DIR__ . '/../resources/views', 'llms-generator');
-      $this->bootNav();
+        Nav::extend(function ($nav) {
+            $nav->tool('LLMs Generator')
+                ->section('Tools')
+                ->route('llms-generator.index')
+                ->icon('ai-sparks');
+        });
 
-      Event::listen(EntrySaved::class, function () {
-          LlmsTxtService::generate();
-      });
+        Event::listen(EntrySaved::class, function () {
+            LlmsTxtService::generate();
+        });
 
-      Event::listen(EntryDeleted::class, function () {
-          LlmsTxtService::generate();
-      });
-  }
-
-  /**
-   * Nav link button under Tools
-   */
-  protected function bootNav()
-  {
-      Nav::extend(function ($nav) {
-          $nav->tool('LLMs Generator')->section('Tools')
-            ->route('llms-generator.index')
-            ->icon('crane');//code, file-code, filter-lines,group,
-      });
-  }
-
+        Event::listen(EntryDeleted::class, function () {
+            LlmsTxtService::generate();
+        });
+    }
 }
-

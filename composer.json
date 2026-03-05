@@ -2,6 +2,7 @@
   "name": "ravenna/llms-generator",
   "type": "statamic-addon",
   "license": "MIT",
+  "description": "LLMS.txt generator for Statamic",
   "autoload": {
     "psr-4": {
       "Ravenna\\LlmsGenerator\\": "src"
@@ -17,7 +18,7 @@
     "statamic/cms": "^5.0|^6.0"
   },
   "require-dev": {
-    "orchestra/testbench": "^9.0"
+    "orchestra/testbench": "^9.0|^10.0"
   },
   "config": {
     "allow-plugins": {
@@ -26,8 +27,8 @@
   },
   "extra": {
     "statamic": {
-      "name": "Llms Generator",
-      "description": "LLMS.txt generator for Statamic 5+",
+      "name": "LLMs Generator",
+      "description": "LLMS.txt generator for Statamic",
       "namespace": "Ravenna\\LlmsGenerator"
     },
     "laravel": {
