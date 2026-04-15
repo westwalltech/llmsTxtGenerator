@@ -56,6 +56,10 @@ class LlmsTxtService
             $lines[] = "";
         }
 
-        File::put(public_path('llms.txt'), implode(PHP_EOL, $lines));
+        $outputPath = config('llmsgenerator.output_path') ?: public_path('llms.txt');
+
+        File::ensureDirectoryExists(dirname($outputPath));
+
+        File::put($outputPath, implode(PHP_EOL, $lines));
     }
 }

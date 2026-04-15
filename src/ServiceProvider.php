@@ -18,6 +18,12 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootAddon(): void
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/llmsgenerator.php', 'llmsgenerator');
+
+        $this->publishes([
+            __DIR__ . '/../config/llmsgenerator.php' => config_path('llmsgenerator.php'),
+        ], 'llms-generator-config');
+
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'llms-generator');
 
         Nav::extend(function ($nav) {
